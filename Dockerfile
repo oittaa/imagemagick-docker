@@ -8,21 +8,24 @@ ARG LIB_HEIF_GIT=https://github.com/strukturag/libheif.git
 ARG LIB_AOM_GIT=https://aomedia.googlesource.com/aom
 ARG BUILD_DIR=/build
 ARG DEBIAN_FRONTEND=noninteractive
+ARG CI
 
 WORKDIR $BUILD_DIR
 COPY git-latest-tag.sh ./
 RUN apt-get -y update && \
-    apt-get install -y autoconf g++ gcc git make pkg-config \
+    # Git tags
+    apt-get install -y git && \
+    ./git-latest-tag.sh ${LIB_AOM_GIT} ${LIB_AOM_VERSION} && \
+    ./git-latest-tag.sh ${LIB_HEIF_GIT} ${LIB_HEIF_VERSION} && \
+    ./git-latest-tag.sh ${IM_GIT} ${IM_VERSION} && \
+    # Build tools
+    apt-get install -y autoconf g++ gcc make pkg-config \
     # libaom
     cmake yasm \
     # libheifßß
     libde265-0 libde265-dev libjpeg62-turbo libjpeg62-turbo-dev libtool libx265-dev x265 \
     # IM
     ghostscript libgomp1 libjpeg62-turbo libjpeg62-turbo-dev libpng16-16 libpng-dev libtiff-dev libwebp6 libwebp-dev libwebpdemux2 libwebpmux3 libxml2-dev libxml2-utils && \
-    # The latest Git tags
-    ./git-latest-tag.sh ${LIB_AOM_GIT} ${LIB_AOM_VERSION} && \
-    ./git-latest-tag.sh ${LIB_HEIF_GIT} ${LIB_HEIF_VERSION} && \
-    ./git-latest-tag.sh ${IM_GIT} ${IM_VERSION} && \
     # Building libaom
     git clone --branch ${LIB_AOM_VERSION} --depth 1 --shallow-submodules --recurse-submodules ${LIB_AOM_GIT} && \
     mkdir build_aom && \
