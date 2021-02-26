@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+printf "CI: %s\n" "${CI}"
 LATEST_TAG=$(git ls-remote --tags --exit-code --refs "$1" | grep -oP '^[[:xdigit:]]+[[:space:]]+refs\/tags\/\Kv?[0-9\._-]*$' | sort -V | tail -n1)
 if [ "$2" != "${LATEST_TAG}" ]
 then
