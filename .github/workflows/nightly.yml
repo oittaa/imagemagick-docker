@@ -52,4 +52,4 @@ jobs:
           load: true
           tags: oittaa/imagemagick:latest
       - name: Tests
-        run: ./test.sh
+        run: . ./test.sh
