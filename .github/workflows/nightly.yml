@@ -51,5 +51,7 @@ jobs:
           push: false
           load: true
           tags: oittaa/imagemagick:latest
+          build-args: |
+            CI=true
       - name: Tests
         run: . ./test.sh
