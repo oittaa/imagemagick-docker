@@ -30,7 +30,7 @@ jobs:
         uses: actions/cache@v2.1.4
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-build-x-${{ github.sha }}
+          key: ${{ runner.os }}-build-x-${{ matrix.arch }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-build-x-
       - name: Build
