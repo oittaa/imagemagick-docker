@@ -25,7 +25,7 @@ jobs:
         with:
           platforms: ${{ matrix.arch }}
           context: ./build
-          file: ./Dockerfile
+          file: ./build/Dockerfile
           push: false
           load: true
           tags: oittaa/imagemagick:latest
