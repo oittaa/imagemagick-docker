@@ -47,4 +47,4 @@ jobs:
           build-args: |
             CI=true
       - name: Tests
-        run: ./test.sh
+        run: PLATFORM="${{ matrix.arch }}" ./test.sh
