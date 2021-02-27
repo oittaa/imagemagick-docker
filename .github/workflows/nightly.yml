@@ -25,11 +25,21 @@ jobs:
         with:
           platforms: ${{ matrix.arch }}
           context: ./build
-          file: ./Dockerfile  
+          file: ./Dockerfile
           push: false
           load: true
           tags: oittaa/imagemagick:latest
-          build-args: |
-            CI=true
       - name: Tests
         run: PLATFORM="${{ matrix.arch }}" ./test.sh
+
+  dependencies:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update Dependencies
+        run: ./update-dependencies.sh
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.8.2
+        with:
+          delete-branch: true
+          title: 'Update dependencies by create-pull-request action'
