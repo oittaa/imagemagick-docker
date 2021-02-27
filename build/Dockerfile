@@ -10,7 +10,6 @@ ARG BUILD_DIR=/build
 ARG DEBIAN_FRONTEND=noninteractive
 
 WORKDIR $BUILD_DIR
-COPY git-latest-tag.sh ./
 RUN apt-get -y update && \
     # Build tools
     apt-get install -y autoconf g++ gcc git make pkg-config \
