@@ -32,7 +32,7 @@ jobs:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-build-x-${{ matrix.arch }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-build-x-
+            ${{ runner.os }}-build-x-${{ matrix.arch }}-
       - name: Build
         uses: docker/build-push-action@v2
         with:
@@ -43,8 +43,16 @@ jobs:
           load: true
           tags: oittaa/imagemagick:latest
           cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
           build-args: |
             CI=true
+      -
+        # Temp fix
+        # https://github.com/docker/build-push-action/issues/252
+        # https://github.com/moby/buildkit/issues/1896
+        name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
       - name: Tests
         run: PLATFORM="${{ matrix.arch }}" ./test.sh
