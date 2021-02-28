@@ -9,8 +9,8 @@ latest_tag() {
     printf "%s" "${RESULT}"
 }
 TAG=$(latest_tag "https://github.com/ImageMagick/ImageMagick.git")
-sed -i "s/^ARG IM_VERSION=.*/ARG IM_VERSION=${TAG}/" Dockerfile
+sed -i "s/^ARG IM_VERSION=.*/ARG IM_VERSION=${TAG}/" build/Dockerfile
 TAG=$(latest_tag "https://github.com/strukturag/libheif.git")
-sed -i "s/^ARG LIB_HEIF_VERSION=.*/ARG LIB_HEIF_VERSION=${TAG}/" Dockerfile
+sed -i "s/^ARG LIB_HEIF_VERSION=.*/ARG LIB_HEIF_VERSION=${TAG}/" build/Dockerfile
 TAG=$(latest_tag "https://aomedia.googlesource.com/aom")
-sed -i "s/^ARG LIB_AOM_VERSION=.*/ARG LIB_AOM_VERSION=${TAG}/" Dockerfile
+sed -i "s/^ARG LIB_AOM_VERSION=.*/ARG LIB_AOM_VERSION=${TAG}/" build/Dockerfile
