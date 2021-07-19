@@ -1,6 +1,6 @@
 FROM debian:buster-slim
 
-ARG IM_VERSION=7.1.0-2
+ARG IM_VERSION=7.1.0-4
 ARG LIB_HEIF_VERSION=v1.12.0
 ARG LIB_AOM_VERSION=v3.1.1
 ARG IM_GIT=https://github.com/ImageMagick/ImageMagick.git
