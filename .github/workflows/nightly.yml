@@ -16,6 +16,8 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2.3.4
+      - name: Update Dependencies
+        run: ./update-dependencies.sh
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1.2.0
       - name: Set up Docker Buildx
@@ -30,14 +32,10 @@ jobs:
           load: true
           tags: oittaa/imagemagick:latest
       - name: Tests
-        run: PLATFORM="${{ matrix.arch }}" ./test.sh
-
-  dependencies:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2.3.4
-      - name: Update Dependencies
-        run: ./update-dependencies.sh
+        run: |
+          cp -a test test-backup
+          PLATFORM="${{ matrix.arch }}" ./test.sh
+          ls -l test && rm -rf test && mv test-backup test
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.1
         with:
