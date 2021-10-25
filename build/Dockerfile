@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 ARG IM_VERSION=7.1.0-11
 ARG LIB_HEIF_VERSION=v1.12.0
