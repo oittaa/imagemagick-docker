@@ -40,7 +40,7 @@ jobs:
           PLATFORM="${{ matrix.arch }}" ./test.sh
           ls -l test && rm -rf test && mv test-backup test
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.12.1
+        uses: peter-evans/create-pull-request@v3.13.0
         with:
           delete-branch: true
           title: 'Update dependencies by create-pull-request action'
