@@ -1,6 +1,6 @@
 FROM debian:bullseye-slim
 
-ARG IM_VERSION=7.1.0-39
+ARG IM_VERSION=7.1.0-40
 ARG LIB_HEIF_VERSION=v1.12.0
 ARG LIB_AOM_VERSION=v3.4.0
 ARG IM_GIT=https://github.com/ImageMagick/ImageMagick.git
