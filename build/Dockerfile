@@ -1,7 +1,7 @@
 FROM debian:bullseye-slim
 
 ARG IM_VERSION=7.1.1-8
-ARG LIB_HEIF_VERSION=v1.15.2
+ARG LIB_HEIF_VERSION=v1.16.1
 ARG LIB_AOM_VERSION=v3.6.0
 ARG IM_GIT=https://github.com/ImageMagick/ImageMagick.git
 ARG LIB_HEIF_GIT=https://github.com/strukturag/libheif.git
@@ -29,7 +29,7 @@ RUN apt-get -y update && \
     # Building libheif
     git clone --branch ${LIB_HEIF_VERSION} --depth 1 --shallow-submodules --recurse-submodules ${LIB_HEIF_GIT} && \
     cd libheif && \
-    ./autogen.sh && ./configure && make && make install &&  \
+    mkdir build && cd build && cmake --preset=release .. && make && make install &&  \
     ldconfig /usr/local/lib && \
     cd $BUILD_DIR && \
     # Building ImageMagick
