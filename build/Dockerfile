@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 ARG IM_VERSION=7.1.1-18
 ARG LIB_HEIF_VERSION=v1.16.2
@@ -18,7 +18,7 @@ RUN apt-get -y update && \
     # libheif
     libde265-0 libde265-dev libjpeg62-turbo libjpeg62-turbo-dev libtool libx265-dev x265 \
     # ImageMagick
-    ghostscript libgomp1 libjpeg62-turbo libjpeg62-turbo-dev libpng16-16 libpng-dev libtiff-dev libwebp6 libwebp-dev libwebpdemux2 libwebpmux3 libxml2-dev libxml2-utils && \
+    ghostscript libgomp1 libjpeg-dev libpng-dev libtiff-dev libwebp-dev libwebpdemux2 libwebpmux3 libxml2-dev libxml2-utils && \
     # Building libaom
     git clone --branch ${LIB_AOM_VERSION} --depth 1 --shallow-submodules --recurse-submodules ${LIB_AOM_GIT} && \
     mkdir build_aom && \
