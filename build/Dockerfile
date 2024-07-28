@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim
 
-ARG IM_VERSION=7.1.1-35
+ARG IM_VERSION=7.1.1-36
 ARG LIB_HEIF_VERSION=v1.18.1
 ARG LIB_AOM_VERSION=v3.9.1
 ARG IM_GIT=https://github.com/ImageMagick/ImageMagick.git
