@@ -2,7 +2,7 @@ FROM debian:bookworm-slim
 
 ARG IM_VERSION=7.1.1-37
 ARG LIB_HEIF_VERSION=v1.18.2
-ARG LIB_AOM_VERSION=v3.9.1
+ARG LIB_AOM_VERSION=v3.10.0
 ARG IM_GIT=https://github.com/ImageMagick/ImageMagick.git
 ARG LIB_HEIF_GIT=https://github.com/strukturag/libheif.git
 ARG LIB_AOM_GIT=https://aomedia.googlesource.com/aom
